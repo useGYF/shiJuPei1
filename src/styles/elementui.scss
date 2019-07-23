@@ -1,0 +1,525 @@
+/*圆圈进度*/
+.el-icon-close:hover {
+  cursor: pointer;
+}
+/*tabs*/
+.el-tabs__nav-wrap::after{
+  background-color: #000!important;
+}
+.el-tabs__nav-scroll{
+  background: #1B2143!important;
+  .el-tabs__active-bar{
+    background: #12DA88;
+  }
+  .el-tabs__item {
+    color: #fff!important;
+  }
+  .is-active{
+    color: #12DA88!important;
+  }
+}
+.el-progress-circle {
+  width: 80px !important;
+  height: 80px !important;
+}
+//上传图片
+.reply .el-upload--picture-card{
+    width: 200px;
+    height: 200px;
+    line-height: 20px;
+    padding-top: 60px;
+}
+/*表格*/
+.el-table__body-wrapper {
+  :hover {
+    cursor: pointer;
+  }
+  overflow: inherit;
+}
+//.el-table .has-gutter tr th{
+//    background: #eef1f6!important;
+//}
+//.table-was .el-table .has-gutter tr th{
+//  background: #242953!important;
+//}
+tr {
+  .cell {
+    padding: 0 !important;
+  }
+}
+
+td {
+  .cell {
+    padding: 0 !important;
+    button{
+      height: 22px!important;
+    }
+    .el-button--small{
+      padding: 0 6px!important;
+    }
+  }
+}
+.CaseSupervision{
+  .el-date-editor.el-input{
+    width: 140px!important;
+  }
+  .el-select{
+    width: 100px;
+  }
+}
+.table {
+  .cell {
+    font-size: 12px;
+  }
+  :hover {
+    cursor: pointer;
+  }
+}
+.input-warp{
+  .el-input{
+    width: 202px!important;
+  }
+}
+//企业污染源弹窗
+.qiye-table{
+  .table-up{
+    border: 1px solid #e0e0e0;
+    th{
+      border: 1px solid #e0e0e0;
+    }
+    .el-input__inner{
+      border-radius: 0;
+    }
+    .el-textarea__inner{
+      border-radius: 0;
+      border: none!important;
+    }
+  }
+}
+//
+.el-pagination {
+  margin-top: 20px;
+  color: #7d8aa2!important;
+}
+
+.DustEmissionStatistics {
+  .cell {
+    text-align: center !important;
+  }
+}
+
+html .table-was table, body .table-was table{
+    border: none!important;
+}
+.table-was #pane-first_s{
+    padding: 0 10px;
+}
+
+//tables样式
+.el-table .cell, .el-table th > div {
+  padding: 0;
+  text-align: center;
+}
+
+.popUp input[type="file"]{
+    display: none;
+}
+.DustEmissionStatistics {
+  .el-table .cell, .el-table th > div {
+    padding-left: 20px;
+    text-align: center;
+  }
+}
+.businessmanagement{
+    .el-table__row .el-table_1_column_2 .cell{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+}
+.el-tabs--border-card {
+  border: 0 !important;
+}
+//
+.selest_warp{
+  .el-input__inner{
+    border: none!important;
+    margin-right:58px!important;
+    text-align: right!important;
+  }
+  .el-select{
+    width: 90px!important;
+  }
+}
+.search_warp{
+  .el-input__inner{
+    padding-right:32px!important;
+    border: none!important;
+  }
+}
+//轮播图左右键样式
+.el-carousel__arrow{
+  top: 80%!important;
+}
+//
+.time-qm{
+  .el-date-editor.el-input{
+    width: 150px!important;
+  }
+}
+//后台样式
+.businessmanagement{
+  .el-dialog{
+    border-radius: 12px!important;
+  }
+  .el-submenu,.is-opened,.is-active{
+    border: 0!important;
+    .is-active{
+      background: #D3EAFC!important;
+      border-left: solid 3px #2796F1!important;
+    }
+  }
+  .el-menu-item{
+    background: #fff!important;
+    border: 0!important;
+  }
+  .el-menu{
+    text-align: left!important;
+  }
+}
+.table-was canvas{
+    top: -40px!important;
+}
+.title-box{
+  padding-left: 10px;
+  .el-checkbox{
+    width: 26%!important;
+    color: #12DA88;
+    overflow: hidden;
+  }
+}
+.economic,.bucrt-class{
+  .el-upload__input{
+    display: none;
+  }
+}
+
+.el-table td, .el-table th{
+  padding: 10px 0!important;
+
+}
+
+.el-tabs__item{
+  color: #7d8aa2!important;
+}
+
+.el-pagination .el-pager{
+  li{
+    margin: 0 2px!important;
+  }
+}
+.businessOperation .popUp{
+    text-align: left;
+}
+
+//弹出框头部
+.el-dialog__header{
+  border-bottom: solid 2px #00C5CD;
+  text-align: left;
+  padding-left: 40px;
+}
+//
+.main-map-content{
+  .el-dialog__header{
+    border-bottom: none!important;
+  }
+}
+//ue输入框大小默认
+.ql-editor{
+  min-height: 150px!important;
+}
+.float001{
+  .el-select{
+    width: 33% !important ;
+  }
+}
+//媒体查询
+@media only screen and (min-width: 1400px) {
+  .ql-editor{
+    min-height: 360px!important;
+  }
+  ///
+  .pollution{
+    .calendar .month-container{
+      height: 310px!important;
+    }
+  }
+  ///
+}
+//
+.repdetail{
+  .con-calss{
+    p{
+      text-align: justify; text-justify: inter-ideograph; text-indent: 2em!important;
+    }
+  }
+}
+.DustRange,.SixParamRange,.AirStation,.DustRange,.TvocRange{
+  #Export{
+    text-align: left;
+    margin-left: 45px;
+    margin-bottom: 20px;
+  } 
+}
+//案件审核轮播
+.CaseReview{
+    .examine,.reply{
+       .el-input.is-disabled .el-input__inner,.el-textarea__inner{
+           color: #000;
+       } 
+    }
+     .el-carousel{
+        display: inline-block;
+        width: 200px!important;
+        margin: 0!important;
+    }
+    .el-carousel__arrow{
+        top: 100px!important;
+    }
+    .el-carousel__indicators{
+        transform: translateX(10%)!important;
+        left: 6%;
+    }
+    .el-carousel__item{
+        width: 200px;
+        height:200px;
+    }
+     .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 200px;
+        text-align: center;
+        margin: 0;
+      }
+    
+      .el-carousel__item:nth-child(2n) {
+         background-color: #fff!important;
+      }
+      
+      .el-carousel__item:nth-child(2n+1) {
+         background-color: #fff!important;
+      }
+}
+//
+.pollution{
+  .calendar .month-container{
+    height: 310px!important;
+  }
+}
+.Window_Four .el-tabs__content{
+    width: 100%!important;
+    height: 100%!important;
+    overflow: inherit;
+}
+//后台案件督查--案件录入
+#CaseIn{
+  .el-input__inner{
+    width: 200px!important;
+  }
+  .CaseIn_mid,.CaseIn_left,.CaseIn_right{
+    .describe{
+      span{
+        vertical-align: top;
+      }
+      .el-textarea{
+        width: 200px;
+      }
+    }
+  }
+  .el-upload--picture-card{
+    width: 200px!important;
+    height: 200px!important;
+    line-height: 20px;
+    padding-top: 60px;
+    img{
+      width: 40px!important;
+      height: 40px!important;
+    }
+    input[type="file"]{
+      display: none;
+    }
+  }
+}
+
+.contingencyplan{
+  .el-upload__input{
+    display: none!important;
+  }
+}
+//大数据资源-应急预案
+.ContingencyPlan{
+  .el-dialog{
+    margin-top: 60px!important;
+    width: 65%!important;
+  }
+  .imgDialog{
+    width: 50% !important;
+  }
+}
+//后台视频管理添加摄像头
+.businessOperation{
+  .class-boxdar{
+    .el-input__inner{
+      width: 215px!important;
+    }
+  }
+}
+/**gy样式*/
+.Like-winter ,.table_container ,.table_video,.table,#SimultaneousRate,#CityRanking{
+  /*表格*/
+  .el-table .cell{
+    text-align: center;
+  }
+  .el-table th, .el-table tr{
+    background-color: #161C3A;
+    color: #fff;
+  }
+  .el-table--enable-row-hover .el-table__body tr:hover>td{
+    background: none;
+  }
+  .el-table td, .el-table th.is-leaf{
+    border-bottom: 1px solid #0A0F2A;
+
+  }
+  .el-table--border td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed{
+    border-right: 1px solid #0A0F2A;
+  }
+  .el-table--border, .el-table--group{
+    border: 1px solid #0A0F2A;
+  }
+  .el-table--border::after, .el-table--group::after, .el-table::before{
+    background-color: #0A0F2A;
+  }
+  .el-table--scrollable-x .el-table__body-wrapper{
+    overflow-x: hidden;
+  }
+  .el-table .warning-row {
+    background: #1b2143;
+  }
+
+  .el-table .success-row {
+    background: #1E254F;
+  }
+  .el-table__empty-block{
+    background-color: #1b2143;
+  }
+  .el-table--border th, .el-table__fixed-right-patch{
+    border-bottom: 1px solid #0A0F2A;
+  }
+  .el-table--striped td{
+    background: none!important;
+  }
+
+  .el-select .el-input.is-focus .el-input__inner,.el-select .el-input__inner:focus{
+    border-color: #0BC940!important;
+  }
+}
+#BigDataSource,.Like-winter .title .monthSelect,.table-sleect{
+  /*选择框*/
+  .el-input__inner{
+    width: 124px;
+    background-color: rgba(27,33,67,1);
+    color: #fff;
+    border: 1px solid #0BC940;
+    border-radius: 16px;
+    text-align: left;
+  }
+  .el-date-editor.el-input, .el-date-editor.el-input__inner{
+    width: 128px!important;
+    color: #fff;
+    background: none;
+    background-color: rgba(27,33,67,1);
+  }
+  .el-input--mini .el-input__icon{
+    color:rgba(18, 218, 136, 1)!important;
+  }
+  .el-input__prefix{
+    display: none;
+  }
+  .el-input--prefix .el-input__inner{
+    padding-left: 10px;
+  }
+  .el-input--suffix .el-input__inner{
+    padding-right: 10px;
+  }
+  .el-picker-panel{
+    position: fixed;
+    right: 0;
+    z-index: 99;
+  }
+}
+
+#SimultaneousRate,#CityRanking{
+  .el-date-editor.el-input,.el-date-editor.el-input__inner{
+    width: 130px!important;
+  }
+  .el-input__inner{
+    width: 130px;
+    background-color: rgba(27,33,67,1);
+    color: #fff;
+    border: 1px solid #0BC940;
+    border-radius: 16px;
+    text-align: left;
+  }
+}
+/*右侧面板*/
+.main,.Meanratiosensornetwork{
+  .el-pagination__total{
+    color: #12DA88;
+  }
+  color: #fff;
+  .el-button{
+    border:none;
+    border-radius: 20px;
+    background:linear-gradient(0deg,rgba(79,172,254,1),rgba(0,242,254,1));
+    border-image:linear-gradient(0deg, rgba(148,207,255,1), rgba(162,249,254,1)) 1 1;
+    box-shadow:0px 3px 7px 0px rgba(0, 0, 0, 0.35);
+  }
+  .el-input__inner{
+      background-color: rgba(27,33,67,1);
+      color: #fff;
+      border: 1px solid #0BC940;
+      border-radius: 16px;
+      text-align: left;
+  }
+  .el-radio-button__inner{
+    background: none!important;
+    border: none!important;
+    border: 0!important;
+    color: #fff;
+    border-bottom: 2px solid #141a38;
+}
+
+.el-radio-button.is-active, .el-radio-button__inner.is-active{
+    border: 0!important;
+    border-bottom: 2px solid #13da88!important;
+}
+.el-radio-button__orig-radio:checked+.el-radio-button__inner{
+    background: none!important;
+    box-shadow: none!important;
+    border-bottom: 2px solid #13da88!important;
+    border-left: 0;
+    border-radius: 0;
+    color: #13da88;
+}
+.el-radio-button:first-child .el-radio-button__inner{
+    border-left: 0!important;
+}
+}
+.gs_box{
+  .el-checkbox__label{
+    color: #fff!important;
+  }
+
+}
