@@ -1,6 +1,6 @@
 <template>
     <div id="BigDataSource">
-        <v-header :isChoose="3"></v-header>
+        <v-header :isChoose="1"></v-header>
       <div class="leftNav">
         <ul>
           <li v-for="(v,i) in leftTabs" @click="tabClick(v,i)" :class='i===isChecked && "leftchecked"'><span
@@ -21,12 +21,12 @@
       return {
         isChecked:0,
         leftTabs:[
-          {label:'国控点均值比',path:'/BigDataSource/MeanRatioSensorNetwork'},
+         //{label:'国控点均值比',path:'/BigDataSource/MeanRatioSensorNetwork'},
           {label:'区县排名',path:'/BigDataSource/CityRankings'},
           {label:'同期变化率',path:'/BigDataSource/SimultaneousRate'},
           {label:'空气质量数据',path:'/BigDataSource/ContaminantCurve'},
           {label:'控制值',path:'/BigDataSource/Warn'},
-          {label:'污染日历',path:'/BigDataSource/pollution'},
+          //{label:'污染日历',path:'/BigDataSource/pollution'},
         ]
       }
     },

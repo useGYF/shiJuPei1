@@ -20,7 +20,7 @@
             <div class="target-panel">
                 <ul>
                     <li v-for="(v,i) in tabmenus" @click="liClick(v,i)"><span :style='"color:"+(i===isChoose ? "#11DA88" : "#fff")'>{{v.label}}</span><div :class='i===isChoose && "menu-checked"'></div></li>
-                    <span class="exit" @click="toLogin">退出登录</span>
+                    <!-- <span class="exit" @click="toLogin">退出登录</span> -->
                 </ul>
             </div>
         </div>
@@ -36,17 +36,20 @@
                 marqueeshowG:true,
                 marqueeshowI:false,
                 update:{},
+                isChoose:1,
                 tabmenus:[
                     {
                         path:'/',
                         label:'实时监测'
-                    },{
-                        path:'/likewinter',
-                        label:'挂图作战'
-                    },{
-                        path:'/GridMap',
-                        label:'网格预测'
-                    },{
+                    },
+                    // {
+                    //     path:'/likewinter',
+                    //     label:'挂图作战'
+                    // },{
+                    //     path:'/GridMap',
+                    //     label:'网格预测'
+                    // },
+                    {
                         path:'/BigDataSource/MeanRatioSensorNetwork',
                         label:'大数据资源'
                     }
@@ -84,15 +87,15 @@
 				}
 			},
             //退出登录
-            toLogin(){
-                if (process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV') {
-                    console.log('test环境');
-                    window.open('http://58.132.207.211:6915/#/Login','_self')
-                } else {
-                    console.log('prod环境');
-                    window.open('http://120.52.157.162:8061/#/Login','_self')
-                }
-            }
+            // toLogin(){
+            //     if (process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV') {
+            //         console.log('test环境');
+            //         window.open('http://58.132.207.211:6915/#/Login','_self')
+            //     } else {
+            //         console.log('prod环境');
+            //         window.open('http://120.52.157.162:8061/#/Login','_self')
+            //     }
+            // }
         },
     }
 </script>
@@ -154,7 +157,7 @@
         }
         .menus-right{
             float: right;
-            width: 548px;
+            width: 248px;
             height:86px;
             .target-panel{
                  .exit{
