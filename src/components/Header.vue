@@ -50,7 +50,7 @@
                     //     label:'网格预测'
                     // },
                     {
-                        path:'/BigDataSource/MeanRatioSensorNetwork',
+                        path:'/BigDataSource/CityRankings',
                         label:'大数据资源'
                     }
                 ]
