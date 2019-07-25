@@ -440,7 +440,8 @@ import {mapMutations, mapState} from 'vuex'
       float: left;
     }
     .box {
-      width: 100%;
+      width: 92%;
+      margin:0 auto;
       height: auto;
       .warning {
         text-align: left;
@@ -463,7 +464,8 @@ import {mapMutations, mapState} from 'vuex'
   }
   /*案件录入*/
   #CaseIn {
-    width: 100%;
+     width: 92%;
+      margin:0 auto;
     text-align: left;
     overflow: hidden;
     .el-input, .el-input__inner {

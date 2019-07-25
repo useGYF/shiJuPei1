@@ -98,7 +98,7 @@
       </div>
       <el-table
         :data="ListData"
-        style="width: 100%">
+        style="width: 92%;margin:0 auto">
         <!--<el-table-column-->
           <!--prop="casecode"-->
           <!--label="案件序号"-->
@@ -921,7 +921,8 @@
       float: left;
     }
     .box {
-      width: 100%;
+      width: 92%;
+      margin:0 auto;
       height: auto;
       .warning {
         text-align: left;
@@ -942,9 +943,10 @@
       }
     }
     .search {
-      margin-left: 20px;
+      width:92%;
+      margin:24px auto;
       text-align: left;
-      margin-bottom: 24px;
+      padding-left: 20px;
       .searchBox {
         display: inline-block;
       }
@@ -974,6 +976,7 @@
     }
     .page {
       text-align: left;
+      width:92%;margin:0 auto
     }
     .el-pagination {
       display: inline-block;
