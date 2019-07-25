@@ -6,7 +6,7 @@
             <div class="first">
                 <div class="tables">
                     <!--选项-->
-                    <a style="background: #12DA88;color: #fff">当前时间</a>
+                    <a class="btn2s">当前时间</a>
                 </div>
                 <div class="shijian">
                     <!--时间选择-->
@@ -381,6 +381,16 @@
                         background: #fff;
                         border-radius: 2px;
                     }
+                    .btn2s{
+                        width: 100px;
+                        height: 34px;
+                        color: #fff;
+                        border-radius: 5px;
+                        background:linear-gradient(0deg,rgba(79,172,254,1),rgba(0,242,254,1));
+    border-image:linear-gradient(0deg, rgba(148,207,255,1), rgba(162,249,254,1)) 1 1;
+    box-shadow:0px 3px 7px 0px rgba(0, 0, 0, 0.35);
+                    }
+                   
                 }
                 .shijian {
                     float: left;

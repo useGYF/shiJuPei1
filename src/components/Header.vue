@@ -155,7 +155,7 @@
         }
         .menus-right{
             float: right;
-            width: 400px;
+            width: 280px;
             height:86px;
             .target-panel{
                  .exit{
