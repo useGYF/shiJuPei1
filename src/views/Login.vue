@@ -42,8 +42,8 @@ export default {
     mounted() {},
     methods: {
         ...mapMutations([
-            'setBackMenu',
-            'setFLAGCODE'
+            'setFLAGCODE',
+            'setUserId'
         ]),
         Login () {
             let _this = this;
@@ -55,12 +55,14 @@ export default {
                     console.log(result)
                     if(result.data.status===1){
                         let FLAGCODE = result.data.data.flagCode;
-                        let res = result.data.data.firstLevels;
+                        let userId = result.data.data.id;
+                        // let res = result.data.data.firstLevels;
                         // let index = res.filter((item)=>(item.label!=='首页'&&item.children.length));
                         // console.log(index);
                         // _this.setBackMenu(res);
                         // _this.$store.commit('setBackMenu', index)
                         _this.$store.commit('setFLAGCODE', FLAGCODE)
+                        _this.$store.commit('setUserId', userId)
 
                         _this.$router.push('/');
                     }else{

@@ -39,6 +39,9 @@ export default new Vuex.Store({
         },
         setFLAGCODE(state,msg){
             state.FLAGCODE = msg
+        },
+        setUserId(state,msg){
+            state.userId = msg
         }
     },
     modules: {

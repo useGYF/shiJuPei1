@@ -254,7 +254,11 @@ import {
   getLFGuangyangCityListResource, // 廊坊城市列表
   getGuangyangControllValueResource, // 控制值
   getGuangyangCityListTimeDataResource, //控制值实时污染物
-  getGuangyangCompareKzhResource // 对比城市
+  getGuangyangCompareKzhResource, // 对比城市
+  get_selectHjwfBusCaseinfoPagesource,//案件列表
+  get_getAllDepartmenttypesource,//责任部门
+  get_getPollutiontypesource,//污染类型
+  get_editCaseZrztsource,//污染类型
 } from './resource'
 
 export default {
@@ -1283,20 +1287,20 @@ export default {
     )
   },
   //添加案件
-  addCaseList(companyId,name, sendPeople, feedbackPeople, caseType, sendTime, feedbackTime, videoFootage, caseDescript, feedbackDescript,feedbackFootage,source) {
+  addCaseList(FLAGCODE,userId,longitude,latitude,type, status, urls, aftercaseimg, description, handlingResult,fkDepartmenttype,datasource) {
     let params = {
-      'companyId': companyId,//企业
-      'name': name,//案件名称
-      'sendPeople': sendPeople,//发送人
-      'feedbackPeople': feedbackPeople,//反馈人
-      'caseType': caseType,//案件类型
-      'sendTime': sendTime,//发送时间
-      'feedbackTime': feedbackTime,//反馈时间
-      'videoFootage': videoFootage,//视频截图
-      'caseDescript': caseDescript,//案情描述
-      'feedbackDescript': feedbackDescript,//反馈结果
-      'feedbackFootage': feedbackFootage,//案后图片
-      'source': source,//案件来源
+        'FLAGCODE':FLAGCODE,
+        'userId':userId,
+        'longitude':longitude,
+        'latitude':latitude,
+      'type': type,//案件类型
+      'status': status,//视频截图
+      'urls': urls,//案情描述
+      'aftercaseimg': aftercaseimg,//反馈结果
+      'description': description,//案后图片
+      'handlingResult': handlingResult,//案件来源
+      'fkDepartmenttype': fkDepartmenttype,//案件来源
+      'datasource': datasource,//案件来源
     };
     let FormatParams = Qs.stringify(params);//转换数据格式
     return axios.post(addCaseListResource, FormatParams, {
@@ -1994,6 +1998,22 @@ export default {
     },
   getElectricForDay(startTime) {
     return axios.get(getElectricForDaysource+'startTime='+startTime, {}
+    )
+  },
+  get_getAllDepartmenttype(params) {
+    return axios.get(get_getAllDepartmenttypesource+'FLAGCODE='+params.FLAGCODE, {}
+    )
+  },
+  get_getPollutiontype(params) {
+    return axios.get(get_getPollutiontypesource+'FLAGCODE='+params.FLAGCODE, {}
+    )
+  },
+  get_editCaseZrzt(params) {
+    return axios.get(get_editCaseZrztsource+'FLAGCODE='+params.FLAGCODE+'&id='+params.id+'&zrxtCode='+params.zrxtCode, {}
+    )
+  },
+  get_selectHjwfBusCaseinfoPage(params) {
+    return axios.get(get_selectHjwfBusCaseinfoPagesource+'FLAGCODE='+params.FLAGCODE+ '&status=' + params.status+ '&fkDepartmenttype=' + params.fkDepartmenttype+ '&location=' + params.location+ '&fkPollutiontype=' + params.fkPollutiontype+ '&startTime=' + params.startTime+ '&endTime=' + params.endTime+ '&pageSize=' + params.pageSize+ '&pageNo=' + params.pageNo+ '&casecode=' + params.casecode, {}
     )
   },
 }

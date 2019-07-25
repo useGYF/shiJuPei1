@@ -9,13 +9,13 @@
     <div id="CaseIn">
       <div class="CaseIn_left">
         <div class="CaseIn_left_cell">
-          <span>案件类型</span>
+          <span>污染类别</span>
           <el-select v-model="CaseInParam.type" clearable placeholder="请选择">
             <el-option
               v-for="item in optionsCaseReason"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
             </el-option>
           </el-select>
         </div>
@@ -50,11 +50,11 @@
         </div>
       </div>
       <div class="CaseIn_add">
-        <div class="CaseIn_add_cell">
+        <!-- <div class="CaseIn_add_cell">
           <span>反馈人</span>
           <el-input v-model="CaseInParam.returnName" placeholder="反馈人"></el-input>
-        </div>
-        <div class="CaseIn_add_cell">
+        </div> -->
+        <!-- <div class="CaseIn_add_cell">
           <span>企业名称</span>
           <el-autocomplete
             v-model="CaseInParam.company"
@@ -62,6 +62,17 @@
             placeholder="请输入内容"
             @select="handleSelect"
           ></el-autocomplete>
+        </div> -->
+        <div class="CaseIn_add_cell">
+          <span>责任主体</span>
+          <el-select v-model="CaseInParam.fkDepartmenttype" clearable placeholder="请选择">
+            <el-option
+              v-for="item in optionsfkDepartmenttype"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
         </div>
         <div class="CaseIn_add_cell describe">
           <span class="left">案后图片</span>
@@ -93,11 +104,19 @@
         </div>
       </div>
       <div class="CaseIn_mid">
-        <div class="CaseIn_mid_cell">
+        <!-- <div class="CaseIn_mid_cell">
           <span>发送人</span>
           <el-input v-model="CaseInParam.sendName" placeholder="发送人"></el-input>
+        </div> -->
+        <div class="CaseIn_mid_cell">
+          <span>经度</span>
+          <el-input v-model="CaseInParam.longitude" placeholder="经度"></el-input>
         </div>
         <div class="CaseIn_mid_cell">
+          <span>纬度</span>
+          <el-input v-model="CaseInParam.latitude" placeholder="纬度"></el-input>
+        </div>
+        <!-- <div class="CaseIn_mid_cell">
           <div class="block">
             <span class="demonstration">发送时间</span>
             <el-date-picker
@@ -107,14 +126,14 @@
               value-format="yyyy-MM-dd HH:mm:ss">
             </el-date-picker>
           </div>
-        </div>
+        </div> -->
         <div class="CaseIn_mid_cell describe">
-          <span>案件描述</span>
+          <span>案前描述</span>
           <el-input type="textarea" :rows="9" v-model="CaseInParam.describe" placeholder="案件描述"></el-input>
         </div>
       </div>
       <div class="CaseIn_right">
-        <div class="CaseIn_right_cell">
+        <!-- <div class="CaseIn_right_cell">
           <div class="block">
             <span class="demonstration">反馈时间</span>
             <el-date-picker
@@ -124,7 +143,7 @@
               value-format="yyyy-MM-dd HH:mm:ss">
             </el-date-picker>
           </div>
-        </div>
+        </div> -->
         <div class="CaseIn_right_cell">
           <span>案件来源</span>
           <el-select v-model="CaseInParam.region" clearable placeholder="请选择">
@@ -137,7 +156,7 @@
           </el-select>
         </div>
         <div class="CaseIn_right_cell describe">
-          <span>反馈结果</span>
+          <span>案后描述</span>
           <el-input type="textarea" :rows="9" v-model="CaseInParam.returnRes" placeholder="反馈结果"></el-input>
         </div>
       </div>
@@ -149,6 +168,7 @@
 </template>
 
 <script>
+import {mapMutations, mapState} from 'vuex'
   import api from '../../../api/index'
   export default {
     name: 'CaseEntry',
@@ -184,13 +204,10 @@
         //案发来源选择
         optionsCaseRegion: [{
           value: '1',
-          label: '指挥中心'
+          label: 'App'
         }, {
           value: '2',
-          label: '大气办'
-        }, {
-          value: '3',
-          label: '双联办'
+          label: '微信'
         }],
         //案件录入
         optionsCompany: [],//企业
@@ -206,6 +223,7 @@
           company: '',
           region: '',
           companyId: '',
+          fkDepartmenttype:''
         },
         imagelist: [],
         imagelistAfter: [],
@@ -222,14 +240,22 @@
       }
     },
     created() {
+        this.getPollutiontype();
+        this.getAllDepartmenttype();
     },
     mounted() {
-      this.getCompanys();
+    //   this.getCompanys();
       this.imgUrl = api.CaseImgUp();
     },
-    computed: {},
+    computed: {
+        ...mapState([
+            'FLAGCODE',
+            'userId'
+        ])
+    },
     methods: {
       uploadOnSuccess(e, file) {//上传附件
+      console.log(file)
         this.fileUrl = file.response.data;
         this.$message.success("上传成功")
         this.imagelist.push({
@@ -303,20 +329,25 @@
       addCase() {
         let t = this;
         let addParam = this.CaseInParam;
-        //console.log(addParam);
-        let name = '案件';
-        let sendPeople = addParam.sendName;
-        let feedbackPeople = addParam.returnName;
-        let caseType = addParam.type;
-        let sendTime = addParam.sendTime;
-        let feedbackTime = addParam.returnTime;
-        let videoFootage = this.fileUrl;
-        let feedbackFootage = this.fileUrlAfter;
-        let caseDescript = addParam.describe;
-        let feedbackDescript = addParam.returnRes;
-        let companyId = addParam.companyId;
-        let source = addParam.region;
-        api.addCaseList(companyId, name, sendPeople, feedbackPeople, caseType, sendTime, feedbackTime, videoFootage, caseDescript, feedbackDescript, feedbackFootage, source).then(res => {
+        let FLAGCODE = this.FLAGCODE;
+        let userId = this.userId;
+        let longitude = addParam.longitude;
+        let latitude = addParam.latitude;
+        // let name = '案件';
+        // let sendPeople = addParam.sendName;
+        // let feedbackPeople = addParam.returnName;
+        let type = addParam.type;
+        let status = '4';
+        // let sendTime = addParam.sendTime;
+        // let feedbackTime = addParam.returnTime;
+        let urls = this.fileUrl;
+        let aftercaseimg = this.fileUrlAfter;
+        let description = addParam.describe;
+        let handlingResult = addParam.returnRes;
+        let fkDepartmenttype = addParam.fkDepartmenttype;
+        // let companyId = addParam.companyId;
+        let datasource = addParam.region;
+        api.addCaseList(FLAGCODE,userId,longitude,latitude,type, status, urls, aftercaseimg, description, handlingResult,fkDepartmenttype,datasource).then(res => {
           //console.log(res)
           t.$message({
             message: '案件录入成功',
@@ -334,6 +365,10 @@
           t.CaseInParam.company = '';
           t.CaseInParam.companyId = '';
           t.CaseInParam.region = '';
+          t.CaseInParam.longitude = '';
+          t.CaseInParam.latitude = '';
+          t.CaseInParam.location = '';
+          t.CaseInParam.fkDepartmenttype = '';
           t.imagelist = [];
           t.imagelistAfter = [];
           t.fileUrl = '';
@@ -356,7 +391,37 @@
       },
       handleSelect(item) {
         this.CaseInParam.companyId = item.id;
-      }
+      },
+      getPollutiontype () {
+            /*污染类别**/
+            let params = {
+                FLAGCODE:this.FLAGCODE,
+            };
+            try {
+                api.get_getPollutiontype (params).then(result=>{
+                    // console.log (result);
+                    if (result.data.status === 1) {
+                        this.optionsCaseReason = result.data.data;
+                        // this.optionsDistributePop = result.data.data;
+                    }
+                });
+                
+            } catch (error) {
+                console.log (error);
+            }
+        },
+        getAllDepartmenttype () {
+            /*责任部门**/
+            let params = {
+                FLAGCODE:this.FLAGCODE,
+            }; 
+            api.get_getAllDepartmenttype (params).then(result=>{
+                // console.log (result);
+                if (result.data.status === 1) {
+                    this.optionsfkDepartmenttype = result.data.data;
+                }
+            });
+        },
     },
   }
 </script>

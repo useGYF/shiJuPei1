@@ -244,7 +244,7 @@ const apilangfangTDK = {
   GetSixParamAirExcelOutPut: apiconfig[icode].devm + '/api/SixParamAir/ExcelOutPut?',//六参数排名导出
   GetTVOCExcelOutPut: apiconfig[icode].devn + '/api/XhHb/ExcelOutPut?',//TVOC排名导出
   DayDataUrl: apiconfig[icode].devn + '/api/Monitoring/UploadFile',//日数据上传
-  CaseImgUp: apiconfig[icode].devc + '/guangyang/cases/uploadAnalysisFile',//案件上传图片
+  CaseImgUp: apiconfig[icode].devg + '/task/mobile/uploadAnalysisFile',//案件上传图片
   UploadAnalysisFile: apiconfig[icode].devc + '/servicePlatform/admin/economicData/uploadAnalysisFile',//经济数据上传
   DianUploadFile: apiconfig[icode].devn + '/api/Winter/UploadFile',//用电量上传
   GetTownExcelOutPut: apiconfig[icode].devn + '/api/Town/ExcelOutPut?',//乡镇空气站导出
@@ -350,7 +350,7 @@ const apilangfangTDK = {
   GetVideoDeviceInfoById: apiconfig[icode].devn + '/api/Video/GetVideoDeviceInfoById?',//根据id获取摄像头详情
   VodeoExcelOutPut: apiconfig[icode].devc + '/guangyang/company/getCompanysExcel?',//视频列表excel导出
   getAllParent: apiconfig[icode].devc + '/guan/sysUser/getAllParent',//获取上级
-  addCaseList: apiconfig[icode].devc + '/guangyang/cases/addInspectorCasePage',//广阳添加案件
+  addCaseList: apiconfig[icode].devg + '/task/mobile/uploadFile',//广阳添加案件
   getCompanys: apiconfig[icode].devc + '/guangyang/company/getCompanys',//广阳企业列表
   getGyGridinfo: apiconfig[icode].devc + '/guangyang/cases/getGyGridinfo',//广阳网格选择
 
@@ -368,6 +368,10 @@ const apilangfangTDK = {
   getLFGuangyangCityList: apiconfig[icode].devg + '/task/airguangyangenvir/getLangfangCityList', // 控制值-区县列表
   getGuangyangCityListTimeData: apiconfig[icode].devg + '/task/airguangyangenvir/getGuangyangInTimeData', // 控制值-污染物
   getGuangyangCompareKzh: apiconfig[icode].devg + '/task/airguangyangenvir/getCityKzh?', // 控制值-污染物
+  get_selectHjwfBusCaseinfoPage: apiconfig[icode].devg + '/task/mobile/selectHjwfBusCaseinfoPage?', //案件列表
+  get_getAllDepartmenttype: apiconfig[icode].devg + '/task/mobile/getAllDepartmenttype?', //责任部门
+  get_getPollutiontype: apiconfig[icode].devg + '/task/mobile/getPollutiontype?', //责任部门
+  get_editCaseZrzt: apiconfig[icode].devg + '/task/mobile/editCaseZrzt?', //责任部门
 
 }
 export const GetPolluteCalendarhbResource = API_ROOT.concat(apilangfangTDK.GetPolluteCalendarhb);
@@ -627,3 +631,7 @@ export const exportCountDatasource = API_ROOT.concat(apilangfangTDK.exportCountD
 export const getCountyRateDatasource = API_ROOT.concat(apilangfangTDK.getCountyRateData);
 export const getCountyRateDataExcelsource = API_ROOT.concat(apilangfangTDK.getCountyRateDataExcel);
 export const getElectricForDaysource = API_ROOT.concat(apilangfangTDK.getElectricForDay);
+export const get_selectHjwfBusCaseinfoPagesource = API_ROOT.concat(apilangfangTDK.get_selectHjwfBusCaseinfoPage);
+export const get_getAllDepartmenttypesource = API_ROOT.concat(apilangfangTDK.get_getAllDepartmenttype);
+export const get_getPollutiontypesource = API_ROOT.concat(apilangfangTDK.get_getPollutiontype);
+export const get_editCaseZrztsource = API_ROOT.concat(apilangfangTDK.get_editCaseZrzt);

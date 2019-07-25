@@ -81,11 +81,11 @@
               @change='endChange'>
             </el-date-picker>
             <el-button type="primary" class='btns' @click='GetMonitoringDay'>查询</el-button>
-            <div class="InsertOrOut">
+            <!-- <div class="InsertOrOut">
               <span>
                 <el-button type="primary" @click="GetExportCase">Excel导出</el-button>
               </span>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -350,7 +350,7 @@
   import {Message} from 'element-ui';
   import {mapMutations, mapState} from 'vuex'
   import caseEntry from './CaseEntry'
-  import {get_getAllDepartmenttype,get_getPollutiontype,get_selectHjwfBusCaseinfoPage,get_editCaseZrzt,get_export} from '@/api/index'
+  import api from '@/api/index'
 
   export default {
     name: 'CaseReview',
@@ -617,7 +617,7 @@
       selectChangePollution(val) {
         this.pollutiontype = val;
       },
-        async GetEditCase () {
+       GetEditCase () {
             /*分配责任部门**/
             let params = {
                 FLAGCODE:this.FLAGCODE,
@@ -625,13 +625,13 @@
                 zrxtCode :this.zrxtCode,
             };
             try {
-                var result = await get_editCaseZrzt (params);
-                // console.log (result);
-                if (result.data.status === 1) {
-                    this.$message({type:'success',message:'分配成功'});
-                    this.Examine = false;
-                    this.GetMonitoringDay();
-                }
+                api.get_editCaseZrzt (params).then(result=>{
+                    if (result.data.status === 1) {
+                        this.$message({type:'success',message:'分配成功'});
+                        this.Examine = false;
+                        this.GetMonitoringDay();
+                    }
+                });
             } catch (error) {
                 console.log (error);
             }
@@ -751,39 +751,38 @@
           });
         });
       },
-        async getAllDepartmenttype () {
+        getAllDepartmenttype () {
             /*责任部门**/
             let params = {
                 FLAGCODE:this.FLAGCODE,
-            };
-            try {
-                var result = await get_getAllDepartmenttype (params);
+            }; 
+            api.get_getAllDepartmenttype (params).then(result=>{
                 // console.log (result);
                 if (result.data.status === 1) {
                     this.optionsDuty = result.data.data;
                     this.optionsDistributePop = result.data.data;
                 }
-            } catch (error) {
-                console.log (error);
-            }
+            });
         },
-        async getPollutiontype () {
+        getPollutiontype () {
             /*污染类别**/
             let params = {
                 FLAGCODE:this.FLAGCODE,
             };
             try {
-                var result = await get_getPollutiontype (params);
-                // console.log (result);
-                if (result.data.status === 1) {
-                    this.optionsPollution = result.data.data;
-                    // this.optionsDistributePop = result.data.data;
-                }
+                api.get_getPollutiontype (params).then(result=>{
+                    // console.log (result);
+                    if (result.data.status === 1) {
+                        this.optionsPollution = result.data.data;
+                        // this.optionsDistributePop = result.data.data;
+                    }
+                });
+                
             } catch (error) {
                 console.log (error);
             }
         },
-        async GetMonitoringDay () {
+        GetMonitoringDay () {
             let params = {
                 FLAGCODE:this.FLAGCODE,
                 // userId :this.$cookies.get('auth'),
@@ -825,8 +824,7 @@
                 //     break;
             }
             this.dealStatus = deal;
-            try {
-                var result = await get_selectHjwfBusCaseinfoPage (params);
+            api.get_selectHjwfBusCaseinfoPage (params).then(result=>{
                 console.log (result);
                 if (result.data.status === 1) {
                     let InfoData = result.data.data.rows;
@@ -858,9 +856,8 @@
                         })
                     }
                 }
-            } catch (error) {
-                console.log (error);
-            }
+            });
+                
         },
     },
   }
