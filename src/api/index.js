@@ -260,8 +260,12 @@ import {
 export default {
   /*所有接口抛出*/
   //登录地址
-  GetUserLoginRes() {
-    return GetUserLoginResource
+  GetUserLoginRes(params) {
+    let FormatParams = Qs.stringify(params);//转换数据格式
+    return axios.post(GetUserLoginResource, FormatParams, {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }
+    )
   },
     //污染日历环比
     GetPolluteCalendarhb(year,type){

@@ -76,7 +76,7 @@ const apilangfangTDK = {
   GetWeatherWinterPre: apiconfig[1].devn + '/api/Weather/GetWeatherWinterPre',//冬防战报模块六天气排名
   GetsourcetypeAllInfo: apiconfig[icode].devc + '/servicePlatform/enterprise/allInfo?',//静态原清单1
   GetallInfoBySourceType: apiconfig[icode].devc + '/servicePlatform/enterprise/allInfoBySourceType?',//静态原清单2
-  GetUserLogin: apiconfig[icode].devn + '/api/login/UserLogin',//登录接口
+  GetUserLogin: apiconfig[icode].devg + '/task/caseLogin/login',//登录接口
   GetCameraList: apiconfig[icode].devy + '/guangyang/company/getCameraList',//视频列表页面数据
   GetCompanyStatistics: apiconfig[icode].devn + '/api/Company/GetCompanyStatistics',//企业污染统计
   GetEmergencyList: apiconfig[icode].devn + '/api/EmergencyPlan/GetEmergencyList',//应急清单....

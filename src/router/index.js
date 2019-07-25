@@ -37,6 +37,7 @@ import BusinessManagement from '@/views/Management/Business/BusinessManagement'/
 
 import GridMapView from '@/views/GridMapView'
 import BigDataSource from '@/views/BigDataSource'
+import CaseReview from '@/views/Management/Business/CaseReview'
 
 Vue.use(Router)
 
@@ -171,6 +172,12 @@ export default new Router({
           meta:{keepAlive:true},
           component:GridMapView
       },
+      {
+        path:'/case',
+        name:'case',
+        meta:{keepAlive:true},
+        component:CaseReview
+    },
       {
         path:'/BigDataSource',
         name:'BigDataSource',

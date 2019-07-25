@@ -1,277 +1,183 @@
 <template>
-  <div class="login">
-    <!--登录页面-->
-    <div class="form">
-      <div class="input">
-        <div class="warp-dl-tu">
-          <img src="../assets/img/logo1.png" alt="">
-          <p>廊坊市广阳区网格化环境管理平台</p>
+    <div id="Login">
+        <div class="Login_box">
+            <div class="Login_welcome">登录</div>
+            <div class="Login_form">
+                <el-input class="userName" placeholder="用户名" v-model="userName"></el-input>
+                <el-input class="passWord" type="password"  placeholder="密码" v-model="userPass" @keyup.enter.native="Login"></el-input>
+                <el-button  type="primary" class="Login_btn" @click="Login">登录</el-button>
+            </div>
         </div>
-       <div class="user">
-          <strong>用户名</strong><input class="us" v-model="userName" type="text" placeholder="请输入用户名">
-        </div>
-        <div class="pass">
-          <strong>密码</strong><input class="pa" v-model="passWord" type="password" placeholder="请输入密码"
-                                    @keyup.enter="login">
-        </div>
-        <div class="tishi">
-          用户名或密码不正确
-        </div>
-        <div class="butn">
-          <button @click="login">登录{{userData}}</button>
-        </div>
-      </div>
     </div>
-
-  </div>
 </template>
 
 <script>
-
-  import api from '../api/index';
-
-  export default {
-    name: 'index',
+// import config from '@/config.js';
+//引入vuex
+import { mapMutations, mapState } from 'vuex'
+// import {get_Login } from '@/api/index';
+import api from '../api/index'
+export default {
+    name: 'Login',
+    props: [],
     data() {
-      return {
-        userName: '',
-        passWord: '',
-        Role: '',
-        isShow: true,
-        isDuty: true,
-        userId: ''
-      }
-    },
-    mounted() {
-
-      $(".us").focus(function () {$('.user').css('border-bottom', '1px solid #2494F2');});
-      $(".pa").focus(function () {$('.pass').css('border-bottom', '1px solid #2494F2');});
-      $(".us").blur(function () {$('.user').css('border-bottom', '1px solid #fff');});
-      $(".pa").blur(function () {$('.pass').css('border-bottom', '1px solid #fff');});
+        return {
+            userName:'',
+            userPass:'',
+            checked:true
+        }
     },
     computed: {
-      userData() {
-        this.$store.state.userData
-      }
-    },
-    methods: {
-      //缓存到本地
-      setlocal(name, obj) {
-        sessionStorage.setItem(name, JSON.stringify(obj))
-      },
-      //获取本地
-      getlocal(name) {
-        let data = sessionStorage.getItem(name)
-        if (data != null && data != '') {
-          try {
-            let obj = eval('(' + data + ')')
-            return obj
-          } catch (e) {
-            return ''
-          }
-        } else {
-          return ''
-        }
-      },
-      saveOperatorID() {
-        let t = this;
-        let obj = {
-          'Role': t.Role,
-          'isShow': t.isShow,
-          'isDuty': t.isDuty
-        };
 
-        this.setlocal('userInfo', obj);
-      },
-      login() {
+    },
+    updated(){
         const _this = this;
-        sessionStorage.clear();
-        let urlcon = api.GetUserLoginRes();
-        $.ajax({
-          url: urlcon,
-          data: {
-            username: this.userName,
-            password: this.passWord,
-          },
-          method: "post",
-          success: function (data) {
-            console.log(data)
-            if (data.Status > 0) {
-              _this.Role = data.Data.Role;
-              window.token = data.Data.Token;
-              _this.$cookies.set('auth', token, '1d', '/')
-              _this.$message({
-                    message: '不忘初心，蓝天碧水！马上跳转',
-                    type: 'success'
-                  });
-              setTimeout(function () {
-                    _this.$router.push('/likewinter');
-                  }, 2000)
-              _this.saveOperatorID();
-              _this.$store.state.token = data.Data.Token;
-            } else {
-              $('.tishi').css('display', 'block');
-              $('.user').css('border-bottom', '1px solid red');
-              $('.pass').css('border-bottom', '1px solid red');
-              setTimeout(() => {
-                $('.tishi').css('display', 'none')
-                $('.user').css('border-bottom', '1px solid #fff');
-                $('.pass').css('border-bottom', '1px solid #fff');
-              }, 2000)
-            }
-          }
-        });
-      }
-    }
-  }
+        if(_this.userName && _this.userPass){
+            $('.Login_btn').css({background:'#4FACFE'})
+        }else {
+            $('.Login_btn').css({background:'rgba(32,41,88,1)'})
+        }
+    },
+    components: {},
+    mounted() {},
+    methods: {
+        ...mapMutations([
+            'setBackMenu',
+            'setFLAGCODE'
+        ]),
+        Login () {
+            let _this = this;
+            let params = {
+                username:this.userName,
+                password:this.userPass
+            };
+                api.GetUserLoginRes(params).then(result=>{
+                    console.log(result)
+                    if(result.data.status===1){
+                        let FLAGCODE = result.data.data.flagCode;
+                        let res = result.data.data.firstLevels;
+                        // let index = res.filter((item)=>(item.label!=='首页'&&item.children.length));
+                        // console.log(index);
+                        // _this.setBackMenu(res);
+                        // _this.$store.commit('setBackMenu', index)
+                        _this.$store.commit('setFLAGCODE', FLAGCODE)
+
+                        _this.$router.push('/');
+                    }else{
+                        this.$message({type:'error',message:'用户名或密码错误'});
+                    }
+                });
+        },
+       //登录
+       //  Login(){
+       //
+       //      if(this.userName && this.userPass){
+       //
+       //          if(this.userPass ==='123456' && (this.userName==='shenzhou'||this.userName==='jinghai'||this.userName==='dacheng'||this.userName==='guangyang'||this.userName==='guan')){
+       //              let value = this.userName;
+       //              switch (value) {
+       //                  case 'dacheng':
+       //                      this.$router.push({path:'/DaCheng'});
+       //                      break;
+       //                  case 'shenzhou':
+       //                      this.$router.push({path:'/ShenZhou'});
+       //                      break;
+       //                  case 'jinghai':
+       //                      this.$router.push({path:'/JingHai'});
+       //                      break;
+       //                  case 'guangyang':
+       //                      window.open('http://117.119.97.150:6916/','_self')
+       //                      break;
+       //                  case 'guan':
+       //                      window.open('http://117.119.97.150:6917/','_self')
+       //                      break;
+       //              }
+       //          }else {
+       //              this.$message.error('请检查输正确账户名密码！');
+       //          }
+       //      }else {
+       //          this.$message.error('请输入完整账户名密码！');
+       //      }
+       //
+       //
+       //  },
+    },
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-  .login {
-    min-width: 1060px;
+<style lang="scss" scope>
+#Login {
     width: 100%;
     height: 100%;
-    background: url("../assets/img/bj_denglu.jpg") no-repeat center;
+    background: url("../../static/images/LoginIcon/bgImg.png") center no-repeat;
     background-size: cover;
-    position: relative;
-    .bottom_title {
-      position: absolute;
-      width: 100%;
-      height: 50px;
-      left: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.2);
-      .title_banquan {
-        padding-left: 18%;
-        float: left;
-        color: #fff;
-        line-height: 50px;
-        font-size: 16px;
-        opacity: 0.8;
-        span {
-          padding-left: 50px;
+    text-align: center;
+    color: #000;
+    .Login_box{
+        width: 500px;
+        // @include center();
+        margin: 0 auto;
+        padding-top: 200px;
+        .Login_welcome{
+            height:34px;
+            font-size:36px;
+            font-family:SourceHanSansCN-Regular;
+            font-weight:400;
+            color:rgba(221,221,221,1);
+            line-height:49px;
+            margin-bottom: 28px;
         }
-      }
-      .img-qianren {
-        float: left;
-        img {
-          margin-top: 5px;
-          padding-left: 24px;
-          width: 100px;
+        .Login_form{
+            padding: 20px 60px;
+            .userName{
+                input{
+                    background: rgba(32,41,88,1) url('../../static/images/LoginIcon/userName.png') 20px center no-repeat;
+                    background-size: 18px;
+                    padding-left: 59px;
+                    width:350px;
+                    height:47px;
+                    /*opacity:0.3;*/
+                    border-radius:24px;
+                    font-size:18px;
+                    border: none;
+                    font-family:MicrosoftYaHei;
+                    font-weight:400;
+                    color:#fff;
+                }
+            }
+            .passWord{
+                margin-top: 14px;
+                input{
+                    background: rgba(32,41,88,1) url('../../static/images/LoginIcon/passWord.png') 20px center no-repeat;
+                    background-size: 18px;
+                    padding-left: 59px;
+                    width:350px;
+                    height:47px;
+                    /*opacity:0.3;*/
+                    border-radius:24px;
+                    font-size:18px;
+                    border: none;
+                    font-family:MicrosoftYaHei;
+                    font-weight:400;
+                    color:#fff;
+                }
+            }
+            .checked{
+                text-align: left;
+                margin-top: 30px;
+            }
+            .Login_btn{
+                width: 100%;
+                margin-top: 36px;
+                font-size: 22px;
+                width:350px;
+                height:47px;
+                background:rgba(32,41,88,1);
+                /*opacity:0.3;*/
+                border-radius:24px;
+                border: none;
+            }
         }
-      }
     }
-    .sky {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .form {
-      position: absolute;
-      width: 497px;
-      height: 410px;
-      left: 60%;
-      top: 17%;
-      background: rgba(0, 0, 0, 0.5);
-      .input {
-        color: #fff;
-        .warp-dl-tu {
-          width: 100%;
-          height: 90px;
-          img {
-            display: block;
-            width: 60px;
-            margin: 25px 0 0 28px;
-            float: left;
-          }
-          p {
-            float: left;
-            font-size: 24px;
-            line-height: 90px;
-            padding-top: 10px;
-            padding-left: 10px;
-          }
-        }
-        input {
-          width: 240px;
-          height: 28px;
-          color: #fff;
-          border: none;
-          background: rgba(0, 0, 0, 0);
-          line-height: 28px;
-          -webkit-appearance: none;
-        }
-        img {
-          display: block;
-          margin: 0 auto;
-          width: 400px;
-          margin-top: 42px;
-        }
-        .user {
-          text-align: left;
-          line-height: 60px;
-          width: 340px;
-          height: 60px;
-          margin: 20px auto;
-          border-bottom: solid 1px #fff;
-          strong {
-            display: inline-block;
-            width: 60px;
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
-          }
-
-        }
-        .pass {
-          text-align: left;
-          line-height: 60px;
-          width: 340px;
-          height: 60px;
-          margin: 0 auto;
-          border-bottom: solid 1px #fff;
-          strong {
-            display: inline-block;
-            width: 60px;
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
-          }
-        }
-        .tishi {
-          display: none;
-          position: absolute;
-          right: 76px;
-          width: 340px;
-          height: 30px;
-          margin: 0px auto;
-          line-height: 30px;
-          color: red;
-          text-align: right;
-        }
-        .butn {
-
-          width: 340px;
-          height: 48px;
-          margin: 0px auto;
-          border-radius: 3px;
-          margin-top: 54px;
-          button {
-            color: #fff;
-            width: 100%;
-            height: 100%;
-            font-size: 18px;
-            border: none;
-            background: #2494F2;
-          }
-          :hover {
-            background: #0070CE;
-          }
-          overflow: hidden;
-        }
-      }
-    }
-
-  }
+}
 </style>

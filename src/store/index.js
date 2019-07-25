@@ -27,7 +27,8 @@ export default new Vuex.Store({
         menuData : [],
 		//全局token
         token:'',
-        userId:''
+        userId:'',
+        FLAGCODE:''
 	},
 	actions : {
 		
@@ -35,8 +36,11 @@ export default new Vuex.Store({
 	mutations : {
 		setUserData(state,msg){
 			state.userData = msg
-		}
-	},
+        },
+        setFLAGCODE(state,msg){
+            state.FLAGCODE = msg
+        }
+    },
     modules: {
         // movie,
         // activities,

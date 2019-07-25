@@ -49,9 +49,17 @@
                     //     path:'/GridMap',
                     //     label:'网格预测'
                     // },
+                    // {
+                    //     path:'/BigDataSource/CityRankings',
+                    //     label:'大数据资源'
+                    // },
                     {
-                        path:'/BigDataSource/CityRankings',
-                        label:'大数据资源'
+                        path:'/case',
+                        label:'案件'
+                    },
+                    {
+                        path:'/Login',
+                        label:'退出登录'
                     }
                 ]
             }
@@ -86,16 +94,6 @@
                 	this.marqueeshowI = true;
 				}
 			},
-            //退出登录
-            // toLogin(){
-            //     if (process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV') {
-            //         console.log('test环境');
-            //         window.open('http://58.132.207.211:6915/#/Login','_self')
-            //     } else {
-            //         console.log('prod环境');
-            //         window.open('http://120.52.157.162:8061/#/Login','_self')
-            //     }
-            // }
         },
     }
 </script>
@@ -157,7 +155,7 @@
         }
         .menus-right{
             float: right;
-            width: 248px;
+            width: 400px;
             height:86px;
             .target-panel{
                  .exit{
