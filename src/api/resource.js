@@ -24,7 +24,7 @@ const apiconfig = [
   //   devg: 'http://117.119.97.150:8061',//大数据平台
   // }
   {
-    devn: 'http://120.52.157.162:8060',//正式（尚丽娜,吴印照.net)
+    devn: 'http://120.52.157.162:4015',//正式（尚丽娜,吴印照.net)
     devc: 'http://120.52.157.161:8068',//正式（张培涵java接口）
     devy: 'http://120.52.157.161:8068',//正式（大气原清单模块java)
     devm: 'http://gkpt.zq12369.com:8016',//正式（管控平台接口）
@@ -188,7 +188,7 @@ const apilangfangTDK = {
   * */
     GetSootPointList: apiconfig[icode].devn + '/api/Soot/getSootPointList?',//餐饮油烟右侧
     GetSootPointListData: apiconfig[icode].devy + '/guangyang/company/getSootPointList?companyName=',//餐饮油烟监控列表
-    SiteDustListData: apiconfig[icode].devy + '/guangyang/siteDust/list?keyword=',//工地扬尘列表接口
+    SiteDustListData: apiconfig[icode].devn + '/guangyang/siteDust/list?keyword=',//工地扬尘列表接口
     VocsListData: apiconfig[icode].devy + '/guangyang/vocs/list?keyword=',//VOC列表接口
 
     /* add by zhengjingmin 油气回收以及尾气遥感 start */

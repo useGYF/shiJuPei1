@@ -22,7 +22,7 @@ export default {
     path: '/api'
   },{
     site: 'http://120.52.157.162',///.NET
-    port: ':8060',
+    port: ':4015',
     path: '/api'
   },{
     site: 'http://120.52.157.161',//JAVA
@@ -36,7 +36,7 @@ export default {
   getRequestUrlByType(type){
     console.log(process.env.API_ROOT);
     let apiConfig = this.release;//this.release;
-    (process.env.API_ROOT === 'DEV' || process.env.API_ROOT === 'TEST') && (apiConfig = this.development);
+    // (process.env.API_ROOT === 'DEV' || process.env.API_ROOT === 'TEST') && (apiConfig = this.development);
     let url = undefined;
     let cf = undefined;
     switch (type.toUpperCase()) {

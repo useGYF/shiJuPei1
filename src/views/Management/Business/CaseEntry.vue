@@ -237,6 +237,7 @@ import {mapMutations, mapState} from 'vuex'
         },
         restaurants: [],
         timeout: null,
+        optionsfkDepartmenttype:[]
       }
     },
     created() {
