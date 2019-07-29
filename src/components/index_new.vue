@@ -16,7 +16,7 @@
                 <!---->
             </div>
             <!--右侧菜单-->
-            <div class="meun_right">
+            <div class="meun_right" v-if="false">
                 <ul>
                     <!--默认选项-->
                     <li @click="selectRightNavData('统计')" :class="isSelect === '统计' ? 'backgroundColor' : ''">
