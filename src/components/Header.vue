@@ -3,7 +3,7 @@
         <div class="menus-left">
             <span>广阳区空气质量大数据管理平台</span>
         </div>
-        <div class="menus-cont">
+        <!-- <div class="menus-cont">
             <img src="../assets/img/tongzhi.png" alt="">
             <div class="winBox" v-if='marqueeshowG'>
                 <marquee behavior="scroll" direction="left" loop="3" scrollamount="100" scrolldelay="1500"  width=150 hspace=20 vspace=20>
@@ -15,7 +15,7 @@
 				{{update.updateTime}}时，我区累计AQI为{{update.aqi}}，市区组倒排：截止{{update.updateDate}}，月倒排{{update.rank}}
                 </marquee>
 			</div>
-        </div>
+        </div> -->
         <div class="menus-right">
             <div class="target-panel">
                 <ul>

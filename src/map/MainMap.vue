@@ -60,7 +60,7 @@
       return {
           wachiVisible:false,
           clokue:'',
-          zoom: 12,
+          zoom: 10,
           dialogVisible: false,
           map: undefined,
           distanceTool: undefined,

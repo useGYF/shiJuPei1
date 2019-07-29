@@ -408,7 +408,7 @@
                 url: 'static/imgs/indeximgs/morenimg/icon_fang.png',
                 url_one: 'static/imgs/indeximgs/morenimg/icon_fang.png'
               });
-              bus.$emit('menuative', '国省');
+            //   bus.$emit('menuative', '国省');
               break;
             case 'layer_cgq_lcs':
               this.$store.state.menuData.unshift({
@@ -438,7 +438,7 @@
                 url: 'static/imgs/indeximgs/morenimg/icon_ditu2.png',
                 url_one: 'static/imgs/indeximgs/morenimg/icon_ditu2.png'
               });
-                bus.$emit('menuative', '乡镇');
+                // bus.$emit('menuative', '乡镇');
               break;
             case 'layer_gd':
               this.$store.state.menuData.unshift({
@@ -448,7 +448,7 @@
                 url: 'static/imgs/indeximgs/morenimg/icon_gd.png',
                 url_one: 'static/imgs/indeximgs/morenimg/icon_gd.png'
               });
-                bus.$emit('menuative', '工地');
+                // bus.$emit('menuative', '工地');
               break;
             case 'layer_qy':
               this.$store.state.menuData.unshift({
