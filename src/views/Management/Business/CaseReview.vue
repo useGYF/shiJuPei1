@@ -60,8 +60,8 @@
                 </el-option>
               </el-select>
             </div>
-            <span>乡镇名称</span>
-            <el-input v-model='cityName' clearable placeholder="请输入内容"></el-input>
+            <!-- <span>乡镇名称</span>
+            <el-input v-model='cityName' clearable placeholder="请输入内容"></el-input> -->
           </div>
           <div class="block" style="margin-top: 10px;">
             <span class="demonstration">案件时间</span>
@@ -370,10 +370,10 @@
                 value: '2',
                 label: '已指派'
             },
-            {
-                value: '3',
-                label: '待审核'
-            },
+            // {
+            //     value: '3',
+            //     label: '待审核'
+            // },
             {
                 value: '4',
                 label: '已结案'
