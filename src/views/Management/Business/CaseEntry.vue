@@ -49,7 +49,7 @@
           </div>
         </div>
       </div>
-      <div class="CaseIn_add">
+      <!-- <div class="CaseIn_add"> -->
         <!-- <div class="CaseIn_add_cell">
           <span>反馈人</span>
           <el-input v-model="CaseInParam.returnName" placeholder="反馈人"></el-input>
@@ -63,7 +63,7 @@
             @select="handleSelect"
           ></el-autocomplete>
         </div> -->
-        <div class="CaseIn_add_cell">
+        <!-- <div class="CaseIn_add_cell">
           <span>责任主体</span>
           <el-select v-model="CaseInParam.fkDepartmenttype" clearable placeholder="请选择">
             <el-option
@@ -73,8 +73,8 @@
               :value="item.id">
             </el-option>
           </el-select>
-        </div>
-        <div class="CaseIn_add_cell describe">
+        </div> -->
+        <!-- <div class="CaseIn_add_cell describe">
           <span class="left">案后图片</span>
           <div class="left">
             <div class="img-list">
@@ -102,7 +102,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="CaseIn_mid">
         <!-- <div class="CaseIn_mid_cell">
           <span>发送人</span>
@@ -155,10 +155,10 @@
             </el-option>
           </el-select>
         </div>
-        <div class="CaseIn_right_cell describe">
+        <!-- <div class="CaseIn_right_cell describe">
           <span>案后描述</span>
           <el-input type="textarea" :rows="9" v-model="CaseInParam.returnRes" placeholder="反馈结果"></el-input>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="case_submit">
@@ -338,7 +338,7 @@ import {mapMutations, mapState} from 'vuex'
         // let sendPeople = addParam.sendName;
         // let feedbackPeople = addParam.returnName;
         let type = addParam.type;
-        let status = '4';
+        let status = '';
         // let sendTime = addParam.sendTime;
         // let feedbackTime = addParam.returnTime;
         let urls = this.fileUrl;
@@ -349,31 +349,40 @@ import {mapMutations, mapState} from 'vuex'
         // let companyId = addParam.companyId;
         let datasource = addParam.region;
         api.addCaseList(FLAGCODE,userId,longitude,latitude,type, status, urls, aftercaseimg, description, handlingResult,fkDepartmenttype,datasource).then(res => {
-          //console.log(res)
-          t.$message({
-            message: '案件录入成功',
-            type: 'success'
-          });
-          t.$parent.GetMonitoringDay();
-          t.CaseInParam.name = '';
-          t.CaseInParam.sendName = '';
-          t.CaseInParam.returnName = '';
-          t.CaseInParam.type = '';
-          t.CaseInParam.sendTime = '';
-          t.CaseInParam.returnTime = '';
-          t.CaseInParam.describe = '';
-          t.CaseInParam.returnRes = '';
-          t.CaseInParam.company = '';
-          t.CaseInParam.companyId = '';
-          t.CaseInParam.region = '';
-          t.CaseInParam.longitude = '';
-          t.CaseInParam.latitude = '';
-          t.CaseInParam.location = '';
-          t.CaseInParam.fkDepartmenttype = '';
-          t.imagelist = [];
-          t.imagelistAfter = [];
-          t.fileUrl = '';
-          t.fileUrlAfter = '';
+          console.log(res)
+          let mess = res.data.data.msg;
+          if(res.data.status ==1){
+              t.$message({
+                message: mess,
+                type: 'success'
+            });
+            t.$parent.GetMonitoringDay();
+            t.CaseInParam.name = '';
+            t.CaseInParam.sendName = '';
+            t.CaseInParam.returnName = '';
+            t.CaseInParam.type = '';
+            t.CaseInParam.sendTime = '';
+            t.CaseInParam.returnTime = '';
+            t.CaseInParam.describe = '';
+            t.CaseInParam.returnRes = '';
+            t.CaseInParam.company = '';
+            t.CaseInParam.companyId = '';
+            t.CaseInParam.region = '';
+            t.CaseInParam.longitude = '';
+            t.CaseInParam.latitude = '';
+            t.CaseInParam.location = '';
+            t.CaseInParam.fkDepartmenttype = '';
+            t.imagelist = [];
+            t.imagelistAfter = [];
+            t.fileUrl = '';
+            t.fileUrlAfter = '';
+          }else{
+              t.$message({
+                message: mess,
+                type: 'error'
+            });
+          }
+          
         })
       },
       querySearchAsync(queryString, cb) {

@@ -61,7 +61,11 @@
                 RightNavData:[]
             }
         },
-
+        created(){
+            if(!this.$store.state.userId){
+                this.$router.push('/Login');
+            }
+        },
         mounted() {
             this.openFullScreen()
             bus.$on('changesubmit', this.selectdiaodu);//

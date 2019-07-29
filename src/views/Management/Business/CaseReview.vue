@@ -824,6 +824,7 @@
                 //     break;
             }
             this.dealStatus = deal;
+            this.pageNo = 1;
             api.get_selectHjwfBusCaseinfoPage (params).then(result=>{
                 console.log (result);
                 if (result.data.status === 1) {
