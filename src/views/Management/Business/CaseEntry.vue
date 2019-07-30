@@ -348,42 +348,49 @@ import {mapMutations, mapState} from 'vuex'
         let fkDepartmenttype = addParam.fkDepartmenttype;
         // let companyId = addParam.companyId;
         let datasource = addParam.region;
-        api.addCaseList(FLAGCODE,userId,longitude,latitude,type, status, urls, aftercaseimg, description, handlingResult,fkDepartmenttype,datasource).then(res => {
-          console.log(res)
-          let mess = res.data.data.msg;
-          if(res.data.status ==1){
-              t.$message({
-                message: mess,
-                type: 'success'
-            });
-            t.$parent.GetMonitoringDay();
-            t.CaseInParam.name = '';
-            t.CaseInParam.sendName = '';
-            t.CaseInParam.returnName = '';
-            t.CaseInParam.type = '';
-            t.CaseInParam.sendTime = '';
-            t.CaseInParam.returnTime = '';
-            t.CaseInParam.describe = '';
-            t.CaseInParam.returnRes = '';
-            t.CaseInParam.company = '';
-            t.CaseInParam.companyId = '';
-            t.CaseInParam.region = '';
-            t.CaseInParam.longitude = '';
-            t.CaseInParam.latitude = '';
-            t.CaseInParam.location = '';
-            t.CaseInParam.fkDepartmenttype = '';
-            t.imagelist = [];
-            t.imagelistAfter = [];
-            t.fileUrl = '';
-            t.fileUrlAfter = '';
-          }else{
-              t.$message({
-                message: mess,
-                type: 'error'
-            });
-          }
-          
-        })
+        if(FLAGCODE&&userId&&longitude&&latitude&&type&&urls&&description&&datasource){
+            api.addCaseList(FLAGCODE,userId,longitude,latitude,type, status, urls, aftercaseimg, description, handlingResult,fkDepartmenttype,datasource).then(res => {
+            console.log(res)
+            let mess = res.data.data.msg;
+            if(res.data.status ==1){
+                t.$message({
+                    message: mess,
+                    type: 'success'
+                });
+                t.$parent.GetMonitoringDay();
+                t.CaseInParam.name = '';
+                t.CaseInParam.sendName = '';
+                t.CaseInParam.returnName = '';
+                t.CaseInParam.type = '';
+                t.CaseInParam.sendTime = '';
+                t.CaseInParam.returnTime = '';
+                t.CaseInParam.describe = '';
+                t.CaseInParam.returnRes = '';
+                t.CaseInParam.company = '';
+                t.CaseInParam.companyId = '';
+                t.CaseInParam.region = '';
+                t.CaseInParam.longitude = '';
+                t.CaseInParam.latitude = '';
+                t.CaseInParam.location = '';
+                t.CaseInParam.fkDepartmenttype = '';
+                t.imagelist = [];
+                t.imagelistAfter = [];
+                t.fileUrl = '';
+                t.fileUrlAfter = '';
+            }else{
+                t.$message({
+                    message: mess,
+                    type: 'error'
+                });
+            }
+            })
+        }else{
+            t.$message({
+                    message: '录入信息请填写完整',
+                    type: 'error'
+                });
+        }
+        
       },
       querySearchAsync(queryString, cb) {
         var restaurants = this.restaurants;
