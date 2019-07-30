@@ -1,7 +1,7 @@
 <template>
     <div class="atmoheader">
         <div class="menus-left">
-            <span>广阳区空气质量大数据管理平台</span>
+            <span>大数据平台</span>
         </div>
         <!-- <div class="menus-cont">
             <img src="../assets/img/tongzhi.png" alt="">
@@ -107,7 +107,7 @@
         box-shadow:0px 1px 16px 2px rgba(27,33,67,0.8);
         .menus-left{
             float: left;
-            width: 400px;
+            width: 250px;
             height: 86px;
             line-height: 86px;
             background: url("../../static/images/Logo/Logo.png") 30px center no-repeat;
