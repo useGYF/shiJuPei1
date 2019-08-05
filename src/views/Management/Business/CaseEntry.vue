@@ -204,10 +204,10 @@ import {mapMutations, mapState} from 'vuex'
         //案发来源选择
         optionsCaseRegion: [{
           value: '1',
-          label: 'App'
+          label: '巡查发现'
         }, {
           value: '2',
-          label: '微信'
+          label: '领导督查'
         }],
         //案件录入
         optionsCompany: [],//企业
