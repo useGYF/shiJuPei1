@@ -1287,19 +1287,19 @@ export default {
     )
   },
   //添加案件
-  addCaseList(FLAGCODE,userId,longitude,latitude,type, status, urls, aftercaseimg, description, handlingResult,fkDepartmenttype,datasource) {
+  addCaseList(FLAGCODE,userId,longitude,latitude,fkPollutiontype, urls, aftercaseimg, description, handlingResult,fkDepartmenttype,datasource) {
     let params = {
         'FLAGCODE':FLAGCODE,
         'userId':userId,
         'longitude':longitude,
         'latitude':latitude,
-      'type': type,//案件类型
-      'status': status,//视频截图
+      'fkPollutiontype': fkPollutiontype,//案件类型
+    //   'status': status,//视频截图
       'urls': urls,//案情描述
-      'aftercaseimg': aftercaseimg,//反馈结果
+    //   'aftercaseimg': aftercaseimg,//反馈结果
       'description': description,//案后图片
-      'handlingResult': handlingResult,//案件来源
-      'fkDepartmenttype': fkDepartmenttype,//案件来源
+    //   'handlingResult': handlingResult,//案件来源
+    //   'fkDepartmenttype': fkDepartmenttype,//案件来源
       'datasource': datasource,//案件来源
     };
     let FormatParams = Qs.stringify(params);//转换数据格式

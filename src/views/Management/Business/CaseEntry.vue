@@ -176,31 +176,7 @@ import {mapMutations, mapState} from 'vuex'
       return {
         imgUrl: '',
         //案发原因选择
-        optionsCaseReason: [{
-          value: '1',
-          label: '未开治理设备'
-        }, {
-          value: '2',
-          label: '设备故障'
-        }, {
-          value: '3',
-          label: '未营业'
-        }, {
-          value: '4',
-          label: '误报'
-        }, {
-          value: '5',
-          label: '厂区停电'
-        }, {
-          value: '6',
-          label: '扑灭火点'
-        }, {
-          value: '7',
-          label: '监控恢复'
-        }, {
-          value: '8',
-          label: '未作业/停产'
-        }],
+        optionsCaseReason: [],
         //案发来源选择
         optionsCaseRegion: [{
           value: '1',
@@ -337,19 +313,20 @@ import {mapMutations, mapState} from 'vuex'
         // let name = '案件';
         // let sendPeople = addParam.sendName;
         // let feedbackPeople = addParam.returnName;
-        let type = addParam.type;
-        let status = '';
+        let fkPollutiontype = addParam.type;
+        // let status = '';
         // let sendTime = addParam.sendTime;
         // let feedbackTime = addParam.returnTime;
         let urls = this.fileUrl;
-        let aftercaseimg = this.fileUrlAfter;
+        // let aftercaseimg = this.fileUrlAfter;
         let description = addParam.describe;
-        let handlingResult = addParam.returnRes;
-        let fkDepartmenttype = addParam.fkDepartmenttype;
+        // let handlingResult = addParam.returnRes;
+        // let fkDepartmenttype = addParam.fkDepartmenttype;
         // let companyId = addParam.companyId;
         let datasource = addParam.region;
-        if(FLAGCODE&&userId&&longitude&&latitude&&type&&urls&&description&&datasource){
-            api.addCaseList(FLAGCODE,userId,longitude,latitude,type, status, urls, aftercaseimg, description, handlingResult,fkDepartmenttype,datasource).then(res => {
+        console.log(fkPollutiontype)
+        if(FLAGCODE&&userId&&longitude&&latitude&&fkPollutiontype&&urls&&description&&datasource){
+            api.addCaseList(FLAGCODE,userId,longitude,latitude,fkPollutiontype, urls, description,datasource).then(res => {
             console.log(res)
             let mess = res.data.data.msg;
             if(res.data.status ==1){
