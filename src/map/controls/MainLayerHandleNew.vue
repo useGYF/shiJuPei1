@@ -161,7 +161,7 @@
             code: 'layer_qy',
             layerIndex: 5,
             checked: false,
-            visible: false,
+            visible: true,
             src: 'static/imgs/main/qy.png',
             checkedSrc: 'static/imgs/main/qy_c.png',
             primaryKey: '',
@@ -216,11 +216,11 @@
             primaryKey: '',
             childs: []
           }, {
-            name: 'TVOC监测',
+            name: 'VOC监测',
             code: 'layer_cgq_voc',
             layerIndex: 2,
             checked: false,
-            visible: false,
+            visible: true,
             src: 'static/imgs/mues/sixzb/vocw.png',
             checkedSrc: 'static/imgs/mues/sixzb/vocw_c.png',
             primaryKey: '',
@@ -428,7 +428,7 @@
                 url: 'static/imgs/indeximgs/morenimg/icon_Triangle_3.png',
                 url_one: 'static/imgs/indeximgs/morenimg/icon_Triangle_3.png'
               });
-                bus.$emit('menuative', 'VOC');
+                // bus.$emit('menuative', 'VOC');
               break;
             case 'layer_cx':
               this.$store.state.menuData.unshift({
@@ -458,7 +458,7 @@
                 url: 'static/imgs/indeximgs/morenimg/icon_enterprise.png',
                 url_one: 'static/imgs/indeximgs/morenimg/icon_enterprise.png'
               });
-                bus.$emit('menuative', '企业');
+                // bus.$emit('menuative', '企业');
               break;
             case 'layer_cy':
               this.$store.state.menuData.unshift({

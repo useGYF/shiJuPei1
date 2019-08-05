@@ -73,15 +73,15 @@ export default {
         url = cf.site + cf.port + cf.path + '/Dust/GetDust24Hour_NEW';
         break;
       case 'LAYER_QY'://企业监测
-        cf = apiConfig[1];
+        cf = apiConfig[0];
         url = cf.site + cf.port + cf.path + '/Company/GetCompanyPointList';
         break;
       case 'LAYER_QY_INFO'://企业监测
-        cf = apiConfig[1];
+        cf = apiConfig[0];
         url = cf.site + cf.port + cf.path + '/Company/GetCompanyDetai';
         break;
       case 'LAYER_QY_MSG'://企业监测
-        cf = apiConfig[1];
+        cf = apiConfig[0];
         url = cf.site + cf.port + cf.path + '/Company/GetCompanyInfo?pscode=';
         break;
       case 'LAYER_CY'://餐饮监测
@@ -180,6 +180,11 @@ export default {
       case 'LAYER_CGQ_VOC':
         cf = apiConfig[0];
         url = cf.site + cf.port + cf.path + '/XhHb/GetXhHbPointsVoc';
+        break;
+        case 'LAYER_CGQ_VOC_INFO':
+        cf = apiConfig[0];
+        // url = 'http://117.119.97.150:8063/api/XhHb/GetXhHbHistory';
+        url = cf.site + cf.port + cf.path + '/XhHb/GetXhHistoriesVoc';
         break;
     }
     return url;
