@@ -794,13 +794,14 @@
           let value = data[i];
           value['ptType'] = type;
           let pt = new BMap.Point(value.lo || value.lng || value.Longitude || value.longitude, value.la || value.lat || value.Latitude || value.latitude);
-          let marker = type.toUpperCase() === 'LAYER_GS' ? t.getGSValueLabel(pt, value, fieldName) : t.getMarker(pt, t.getMarkerState(value, type, fieldName), type, value[displayName] || undefined);
+          // let marker = type.toUpperCase() === 'LAYER_GS' ? t.getGSValueLabel(pt, value, fieldName) : t.getMarker(pt, t.getMarkerState(value, type, fieldName), type, value[displayName] || undefined);
+          let marker = t.getMarker(pt, t.getMarkerState(value, type, fieldName), type, value[displayName] || undefined);
 
-          let label = t.getDisplayFieldLabel(pt, value, displayName);
-          (label && type.toUpperCase() === 'LAYER_GS') && (t.map.addOverlay(label), this.hasMarkerVisible(value) ? label.show() : label.hide(), label.attributes = value, label.valueField = fieldName, label.layerType = type, label.displayField = displayName, t.lsMarkers.push({
-            marker: label,
-            type: type
-          }));
+          // let label = t.getDisplayFieldLabel(pt, value, displayName);
+          // (label && type.toUpperCase() === 'LAYER_GS') && (t.map.addOverlay(label), this.hasMarkerVisible(value) ? label.show() : label.hide(), label.attributes = value, label.valueField = fieldName, label.layerType = type, label.displayField = displayName, t.lsMarkers.push({
+          //   marker: label,
+          //   type: type
+          // }));
           //获取警报Label
           let labelRed = t.getLabelRed(value, type, fieldName, pt, this.browser);
           (labelRed && (value.isLf || true) && ((parseInt(value.dataLevel) === 1) || true)) && (t.lsRedLabels.push({
@@ -810,8 +811,8 @@
           }), t.map.addOverlay(labelRed), t.map.getZoom() > 9 ? labelRed.show() : labelRed.hide());
 
           //加载数值Label
-          let labelValue = t.setValueLabel(value, fieldName, type, pt);
-          (labelValue && (type.toUpperCase() !== 'LAYER_GS' && type.toUpperCase() !== 'LAYER_QY')) && (t.lsValueLabels.push({
+          let labelValue = t.setValueLabel(value, fieldName, type, pt);//type.toUpperCase() !== 'LAYER_GS' &&
+          (labelValue && (type.toUpperCase() !== 'LAYER_QY')) && (t.lsValueLabels.push({
             label: labelValue,
             type: type
           }), marker.setLabel(labelValue));//t.map.addOverlay(labelValue));
@@ -1130,6 +1131,7 @@
             level = this.getPollutionState(value, fieldName);
             break;
         }
+        level = 0;
         let iconName = ptType !== 'LAYER_YJ' ? this.getIconName(ptType, level - 1) : ('yj-' + data.whetherpeak + '-' + data.buttonstate);
         return iconName.toUpperCase();
       },
@@ -1268,6 +1270,9 @@
           case 'LAYER_WQ':
             iconName = 'wq-';
             break;
+          case 'LAYER_GS':
+            iconName = 'gs-';
+            break;
         }
         switch (level) {
           case -1:
@@ -1292,7 +1297,7 @@
             iconName += 'v';
             break;
         }
-        return iconName;
+        return iconName+'-p';
       },
 
       //图标点击事件
@@ -1300,7 +1305,7 @@
         console.log(attributes);
         const t = this;
         let m = new BMap.Marker(point, {
-          offset: (attributes.hasOwnProperty('ptType')) && (attributes.ptType.toUpperCase() === 'LAYER_GS' ? (new BMap.Size(-39, 18)) : (new BMap.Size(-39, 38))) || (new BMap.Size(0, 0))
+          offset: (attributes.hasOwnProperty('ptType')) && (attributes.ptType.toUpperCase() === 'LAYER_GS_P' ? (new BMap.Size(-39, 18)) : (new BMap.Size(-39, 38))) || (new BMap.Size(0, 0))
         });
         if (attributes.hasOwnProperty('ptType') && (attributes.ptType.toUpperCase() === 'LAYER_SP' || attributes.ptType.toUpperCase() === 'LAYER_SP_GKW')) {
 
@@ -1462,7 +1467,8 @@
           }
 
             (this.searchInfoWindow = new BMapLib.SearchInfoWindow(t.map, res || '无数据', {
-              title: '<sapn style="font-size:16px" ><b title="' + (attributes[displayName] || '') + '">' + (attributes[displayName] || '') + '</b>' + '</span><span id="vocvideo" class="class-vidoes"  style="display:' + (['LAYER_CGQ_VOC', 'LAYER_SP_GD', 'LAYER_SP_CY', 'LAYER_SP_VOC', 'LAYER_SP_SLW', 'LAYER_SP_FS', 'LAYER_SP_HD'].indexOf(ptType.toUpperCase()) > -1 ? 'block' : 'none') + '">视频点击播放</span>',             //标题
+              // title: '<sapn style="font-size:16px" ><b title="' + (attributes[displayName] || '') + '">' + (attributes[displayName] || '') + '</b>' + '</span><span id="vocvideo" class="class-vidoes"  style="display:' + (['LAYER_CGQ_VOC', 'LAYER_SP_GD', 'LAYER_SP_CY', 'LAYER_SP_VOC', 'LAYER_SP_SLW', 'LAYER_SP_FS', 'LAYER_SP_HD'].indexOf(ptType.toUpperCase()) > -1 ? 'block' : 'none') + '">视频点击播放</span>',             //标题
+              title: '<sapn style="font-size:16px" ><b title="' + (attributes[displayName] || '') + '">' + (attributes[displayName] || '') + '</b>' + '</span><span id="vocvideo" class="class-vidoes"  style="display:' + (['LAYER_CGQ_VOC', 'LAYER_SP_GD', 'LAYER_SP_CY', 'LAYER_SP_VOC', 'LAYER_SP_SLW', 'LAYER_SP_FS', 'LAYER_SP_HD'].indexOf(ptType.toUpperCase()) > -1 ? 'none' : 'none') + '">视频点击播放</span>',             //标题
               width: infoWidth,
               height: "auto",
               enableAutoPan: true,
@@ -2004,7 +2010,7 @@
           //console.log(obj.x)
           rtValue.push(obj);
         }
-        let title = '最近24小时TVOC变化趋势';
+        let title = '最近24小时VOC变化趋势';
         this.loadChar(code, 'VOC', rtValue, title);
       },
 
@@ -2643,7 +2649,8 @@
         let vl = fieldName && (value[fieldName] || value[fieldName.toLocaleLowerCase()]);
         switch (ptType.toUpperCase()) {
           case 'LAYER_GS':
-            hasLabel = false;
+            hasLabel = true;
+            index = this.getPollutionState(Math.ceil(vl) || 0, fieldName);//getPM10LevelIndex(Math.ceil(vl) || 0) || 0;
             break;
           case 'LAYER_CGQ_LCS':
             index = this.getPollutionState(Math.ceil(vl) || 0, fieldName);
@@ -3272,7 +3279,8 @@
   }
 
   .class-vidoes {
-    display: inline-block;
+    display: none;
+    /*display: inline-block;*/
     float: right;
     margin-right: 32px;
     padding: 3px 15px;
@@ -3294,6 +3302,7 @@
     border: 1px solid #ddd;
     margin: 2px 15px;
     line-height: 18px;
+    display:none;
   }
 
   .fitem th {
@@ -3314,6 +3323,7 @@
   .param {
     /*border-top:1px solid #DDDDDD;*/
     padding: 0 15px;
+    display:none;
   }
 
   .line {
@@ -3416,6 +3426,7 @@
 
   .index {
     padding: 20px 15px 0;
+    display:none;
   }
 
   .index .item {
@@ -3453,6 +3464,7 @@
     background: #EBEBEB;
     padding: 5px;
     margin: 0 15px;
+    display:none;
   }
 
   .qyPollution .date {
@@ -3474,12 +3486,14 @@
 
   .qyLine {
     padding: 0 15px;
+    display:none;
   }
 
   .Introduce {
     font-size: 12px;
     color: #999999;
     padding: 0 15px 15px;
+    display:none;
   }
 
   .Net, .Person {

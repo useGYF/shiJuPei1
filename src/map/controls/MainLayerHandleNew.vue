@@ -4,7 +4,7 @@
     <ul>
       <li v-for="(v,i) in treeOption" v-show="v.visible" :id="('LI_'+ v.code)" :style="'color:'+(v.checked ? '#10B977' : 'rgba(255, 255, 255, 1)')" :data-index="i" :data-type="v.code" @click="liClick">
         <div class="t-item">
-          <img :title="v.name" class="t-icon" :src="v.checked ? v.checkedSrc : v.src"/>
+          <img :title="v.name" v-show="false" class="t-icon" :src="v.checked ? v.checkedSrc : v.src"/>
           <span class="t-text" :style="'border-right:'+(v.checked ? 'solid 4px #12DA88' : 'none')">{{v.name}}</span>
           <select v-show="v.childs.length && v.checked" :id="'SELECT_'+v.code" title="" @change="targetChanged" :data-index="i" :style="'display:'+ (v.childs.length ? 'line-block' : 'none')">
             <option v-for="(c,j) in v.childs">{{c.text}}</option>
@@ -686,6 +686,7 @@
   .t-item {
     position: relative;
     height: 30px;
+    padding:0 0 0 10px;
   }
 
   .t-item .t-icon {
