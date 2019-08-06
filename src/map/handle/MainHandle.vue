@@ -1011,7 +1011,7 @@
       //获取警报Label
       getLabelRed(data, ptType, fieldName, pt, waringType) {
         let labelRed = undefined;
-        if (ptType.toUpperCase() === 'LAYER_GS' || ptType.toUpperCase() === 'LAYER_CGQ_LCS' || ptType.toUpperCase() === 'LAYER_CGQ_VOC') {
+        if (ptType.toUpperCase() === 'LAYER_GS' || ptType.toUpperCase() === 'LAYER_CGQ_LCS') {
           let hasRed = data[fieldName.toUpperCase() === 'TVOC_V' ? 'IsAlert' : (fieldName + 'IsAlert')] || false;
           //警报
           if (hasRed) {
